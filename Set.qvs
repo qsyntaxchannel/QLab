@@ -1,0 +1,10 @@
+// Syntax
+SET vVariablename = value;
+
+// Examples
+SET vCity = New York;
+SET vPath = C:\Data\Sales\;
+
+// Output
+Trace City: $(vCity);
+Trace Path: $(vPath);
