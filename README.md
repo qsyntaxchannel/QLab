@@ -10,3 +10,5 @@
 ## 📁 Structure
 
 Each folder in this repository contains a specific script or set of functions with its own purpose. All scripts are independent by design — no dependencies between them unless explicitly mentioned.
+
+- [Set/](./Set) — utility script for centralizing variable declarations
