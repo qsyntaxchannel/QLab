@@ -1,4 +1,5 @@
-# QLab
+# QLab  
+[🔗 Visit the official site](https://qsyntaxchannel.com/qlab/)
 
 **QLab** is a growing collection of modular Qlik Sense script files designed to simplify and accelerate your development workflow. Each script acts as a standalone utility or library, ready to be reused, extended, or embedded into your own Qlik projects.
 
