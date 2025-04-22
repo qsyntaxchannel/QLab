@@ -1,0 +1,7 @@
+// Examples
+LET vCurrentYear = Year(Today());
+LET vNextYear = vCurrentYear + 1;
+
+// Output
+Trace Current Year: $(vCurrentYear);
+Trace Next Year: $(vNextYear);
