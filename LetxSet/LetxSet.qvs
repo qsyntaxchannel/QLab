@@ -1,0 +1,17 @@
+// SET Examples
+SET vPath = C:\Users\Documents\Qlik\;
+SET vText = Hello World;
+
+SET vDataFolder = C:\Projetos\Qlik\Data\;
+SET vSalesExpr = Sum(Sales);
+SET vAppName = Relatório de Vendas;
+SET vEnv = DEV;
+
+
+// LET Examples
+LET vToday = Today();
+LET vYear = Year(Today());
+
+LET vTarget = 100000 * 1.05;
+LET vFirstProduct = Peek('Product', 0, 'TabelaProdutos');
+LET vCounter = vCounter + 1;
