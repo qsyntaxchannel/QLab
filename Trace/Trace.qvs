@@ -1,0 +1,55 @@
+TRACE Starting to load the customer table;
+
+LET vStep = 'client';
+TRACE Starting to load the $(vStep) table;
+
+
+// Example 1
+TRACE Start loading the Products table;
+
+LOAD
+    ProductID,
+    ProductName,
+    Category
+FROM [$(vDataFolder)Produtos.qvd](qvd);
+
+TRACE End of loading of the Products table;
+
+
+// Example 2
+LET vCutoffDate = Date(Today() - 30);
+TRACE The cutoff date for the filter is $(vCutoffDate);
+
+
+// Example 3
+IF $(vEnv) = 'DEV' THEN
+    TRACE Development environment detected;
+ELSE
+    TRACE Production environment detected;
+ENDIF
+
+
+// Examnple 4
+FOR vCounter = 1 TO 5
+    TRACE Iteration $(vCounter);
+NEXT
+
+
+// Example 5
+TRACE Starting to load the Sales table;
+
+VendasTemp:
+LOAD
+    *
+FROM [$(vDataFolder)Vendas.qvd](qvd);
+
+LET vRowCount = NoOfRows('VendasTemp');
+TRACE Total rows loaded in the VendasTemp table: $(vRowCount);
+
+IF $(vRowCount) > 0 THEN
+    TRACE Armazenando a tabela VendasTemp no diretório de saída;
+    STORE VendasTemp INTO [$(vOutputFolder)Vendas.qvd] (qvd);
+ELSE
+	DROP TABLE VendasTemp;
+    TRACE No rows found in table VendasTemp. Storage canceled;
+ENDIF
