@@ -1,0 +1,42 @@
+// Example 01
+[Sales]:
+Load * Inline [
+  SaleDate	|SalesAmount
+  2024-01-01|1000
+  2024-01-02|1200
+  2024-01-03|800
+  2024-01-04|950
+  2024-01-05|1300
+](delimiter is '|');
+
+[SalesDiff]:
+Load
+   SaleDate
+  ,SalesAmount
+  ,Peek( 'SalesAmount' ) 				as PreviousDaySales
+  ,SalesAmount - Peek( 'SalesAmount' ) 	as SalesDiff
+Resident [Sales];
+
+Drop Table [Sales];
+
+
+
+// Example 02
+Transactions:
+Load * Inline [
+  TransactionID|TransactionDate|Amount
+  001|2024-01-01|150
+  002|2024-01-05|300
+  003|2024-01-10|450
+  004|2024-01-15|500
+] (delimiter is '|');
+
+SortedTransactions:
+Load 
+   TransactionID
+  ,TransactionDate
+  ,Amount
+Resident Transactions
+Order By TransactionDate;
+
+Let vLastTransactionDate = Peek('TransactionDate', -1, 'SortedTransactions');
