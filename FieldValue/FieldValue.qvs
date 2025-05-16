@@ -1,0 +1,13 @@
+[TEMP]:
+Load * Inline [
+  Region
+  North
+  South
+  East
+  West
+];
+
+Let vDefaultRegion = FieldValue( 'Region', 1 );
+
+// Show selected value on log
+Trace Selected Region: $(vDefaultRegion);     1     
