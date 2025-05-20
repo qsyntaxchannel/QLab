@@ -1,0 +1,37 @@
+[SalesData]:
+Load * Inline [
+  CustomerName, OrderDate, ProductName, Category, Price, OrderID
+  Alice, 01/01/2024, Laptop, Eletrônicos, 3500, 1001
+  Bob, 03/01/2024, Headset, Eletrônicos, 300, 1002
+  Carol, 02/01/2024, Câmera, Eletrônicos, 2200, 1003
+  Alice, 05/02/2024, Mouse, Acessórios, 150, 1004
+  David, 02/02/2024, Teclado, Acessórios, 250, 1005
+  Eve, 04/02/2024, Hub USB, Acessórios, 100, 1006
+  Bob, 01/03/2024, Impressora, Escritório, 800, 1007
+  Carol, 03/03/2024, Scanner, Escritório, 950, 1008
+  Alice, 02/03/2024, Grampeador, Escritório, 75, 1009
+];
+
+// Example 01
+[FirstCustomerByMonth]:
+Load 
+   Month( OrderDate ) AS OrderMonth
+  ,FirstSortedValue( CustomerName, OrderDate ) AS FirstCustomer
+Resident SalesData
+Group By Month( OrderDate );
+
+// Example 02
+[CheapestProductByCategory]:
+Load 
+   Category
+  ,FirstSortedValue( ProductName, Price ) AS CheapestProduct
+Resident SalesData
+Group By Category;
+
+// Example 03
+[SecondOrderPerCustomer]:
+Load 
+   CustomerName
+  ,FirstSortedValue( OrderID, -Date#( OrderDate, 'DD/MM/YYYY' ), 2 ) AS SecondOrderID
+Resident SalesData
+Group By CustomerName;
